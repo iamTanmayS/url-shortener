@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router(); 
 const { handlePostReq, handleDeleteReq, handleGetReq } = require('../controllers/user');
 
-// Define the routes
+// Route for creating new short URL - POST /url/
 router.post('/', handlePostReq); 
+
+// Route for deleting short URL - DELETE /url/:shortCode
 router.delete('/:shortCode', handleDeleteReq);
+
+// Route for redirecting to original URL - GET /url/:shortCode
 router.get('/:shortCode', handleGetReq); 
 
-module.exports = router; 
+module.exports = router;

@@ -1,52 +1,73 @@
-const express = require('express');
-const url = require("../models/user")
-const generateShortCode = require("../Utils/shortCode")
-const app = express();
+const url = require("../models/user");
+const generateShortCode = require("../Utils/shortCode");
 
-async function handleGetReq(req,res){
-    const {shortCode} = req.params;
-    console.log(shortCode);
-    const existing = await url.findOne({shortCode});
-    if(existing){
-        existing.clicks += 1;
-        await existing.save();
-        res.redirect(existing.longUrl);
-
-    } else {
-        res.status(404).json({ error: 'Short URL not found' });
+// Handle GET request to redirect to original URL
+async function handleGetReq(req, res) {
+    try {
+        const { shortCode } = req.params;
+        const existing = await url.findOne({ shortCode });
+        
+        if (existing) {
+            // Increment click counter and redirect
+            existing.clicks += 1;
+            await existing.save();
+            res.redirect(existing.longUrl);
+        } else {
+            res.status(404).render('index', { shortUrl: null, error: 'URL not found' });
+        }
+    } catch (error) {
+        res.status(500).render('index', { shortUrl: null, error: error.message });
     }
- }
-
-
-async function handlePostReq(req,res){
-    
-    
-    const {longUrl} = req.body
-    if (!longUrl) {
-        return res.status(400).json({ error: 'Invalid URL' });
-    }
-    console.log(longUrl)
-    const existing = await url.findOne({longUrl});
-    if(existing){
-        res.send(existing.shortUrl);
-    }
-    const shortCode = generateShortCode();
-    const shortUrl = `https://short.ly/${shortCode}` 
-    const newURL = new url({ longUrl, shortCode,shortUrl });
-    await newURL.save();
-    res.json({ shortUrl });
 }
 
-async function handleDeleteReq(req,res){
-    const {shortCode} = req.params;
-    console.log(shortCode);
-    const existing = await url.findOne({shortCode});
-    if(existing){
-        await existing.deleteOne();
-        res.json({ message: 'Short URL deleted' });
+// Handle POST request to create new short URL
+async function handlePostReq(req, res) {
+    try {
+        const { longUrl } = req.body;
         
-    } else {
-        res.status(404).json({ error: 'Short URL not found' });
+        // Validate URL input
+        if (!longUrl) {
+            return res.render('index', { shortUrl: null, error: 'Please provide a URL' });
+        }
+
+        // Check if URL already exists
+        const existing = await url.findOne({ longUrl });
+        if (existing) {
+            return res.render('index', { shortUrl: existing.shortUrl, error: null });
+        }
+
+        // Generate new short URL
+        const shortCode = generateShortCode();
+        const shortUrl = `${req.protocol}://${req.get('host')}/url/${shortCode}`;
+
+        // Save to database
+        const newURL = new url({
+            longUrl,
+            shortCode,
+            shortUrl,
+            clicks: 0
+        });
+
+        await newURL.save();
+        res.render('index', { shortUrl, error: null });
+    } catch (error) {
+        res.status(500).render('index', { shortUrl: null, error: error.message });
+    }
+}
+
+// Handle DELETE request to remove short URL
+async function handleDeleteReq(req, res) {
+    try {
+        const { shortCode } = req.params;
+        const existing = await url.findOneAndDelete({ shortCode });
+        
+        if (existing) {
+            res.json({ message: 'URL deleted successfully' });
+        } else {
+            res.status(404).json({ error: 'URL not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 }
 
@@ -54,4 +75,4 @@ module.exports = {
     handleGetReq,
     handlePostReq,
     handleDeleteReq
-}
+};

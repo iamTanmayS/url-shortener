@@ -1,5 +1,7 @@
 const express = require("express");
 const connectMongoDb = require('./connection');
+const staticRouter = require('./routes/staticRoute')
+const signUpController = require('./controllers/signUpUser')
 const path = require('path');
 const userRoutes = require('./routes/routes');
 const app = express();
@@ -19,16 +21,9 @@ app.set('view engine', 'ejs');  // Set view engine
 app.set('views', path.join(__dirname, 'views'));  // Set views directory
 
 // Routes setup
-app.get('/', (req, res) => {  // Home page route
-    res.render('index', { shortUrl: null, error: null });
-});
-app.use('/url', userRoutes);  // URL shortener routes
+app.use('/',staticRouter);
+app.use('/url', userRoutes);
 
-// Global error handler
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).render('index', { shortUrl: null, error: 'Something broke!' });
-});
 
 // Start server
 const PORT = process.env.PORT || 3000;

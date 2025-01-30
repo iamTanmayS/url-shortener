@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/signUpPageStyle.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-left">
+            <img src="https://cdn.dribbble.com/userupload/12426546/file/original-c1141e517b6528ed41375d95dfea6a21.jpg?resize=1024x768&vertical=center" alt="Signup Illustration">
+        </div>
+        <div class="signup-right">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <!-- <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div> -->
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <!-- <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                </div> -->
+                <button type="submit" class="signup-btn">Login</button>
+                <p>Already have an account? <a href="/signUp"> SignUP here</a></p>
+            </form>
+            <div class="social-signup">
+                <p>Or Login With</p>
+                <div class="social-icons">
+                    <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google">
+                    <img src="https://img.icons8.com/fluency/48/facebook-new.png" alt="Facebook">
+                    <img src="https://img.icons8.com/ios-filled/48/mac-os.png" alt="Apple">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

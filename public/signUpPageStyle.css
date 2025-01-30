@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f8f8;
+}
+
+.signup-container {
+    display: flex;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.signup-left {
+    width: 50%;
+    background: #ffe6e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.signup-left img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.signup-right {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6b6b;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.signup-btn:hover {
+    background-color: #ff5252;
+}
+
+p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+p a {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.social-signup {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-icons img {
+    width: 40px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column;
+    }
+    
+    .signup-left {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .signup-right {
+        width: 100%;
+    }
+}

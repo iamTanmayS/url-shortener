@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "@discordjs/rest": "^2.4.2",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cookieparser": "^0.1.0",
+    "crypto": "^1.0.1",
+    "discord-api-types": "^0.37.119",
+    "discord.js": "^14.17.3",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "nodemon": "^3.1.9",
+    "replicate": "^1.0.1",
+    "uuid": "^11.0.5"
+  },
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "name": "blogapp",
+  "version": "1.0.0",
+  "description": "This is the url shortener application which will help you to short the urls ",
+  "main": "server.js",
+  "author": "Tanmay Shukla",
+  "license": "ISC",
+  "devDependencies": {},
+  "keywords": [
+    "blogging",
+    "blog",
+    "application"
+  ]
+}

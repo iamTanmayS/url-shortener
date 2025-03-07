@@ -17,9 +17,9 @@
     "uuid": "^11.0.5"
   },
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "node server.js"
   },
-  "name": "blogapp",
+  "name": "urlshortener",
   "version": "1.0.0",
   "description": "This is the url shortener application which will help you to short the urls ",
   "main": "server.js",
@@ -27,8 +27,5 @@
   "license": "ISC",
   "devDependencies": {},
   "keywords": [
-    "blogging",
-    "blog",
-    "application"
   ]
 }
